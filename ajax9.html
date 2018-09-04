@@ -1,0 +1,50 @@
+<html>
+<head>
+<script>
+function showUser(str) {
+    if (str == "") {
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+    } else {
+        // if (window.XMLHttpRequest) {
+        //     // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        // } else {
+        //     // code for IE6, IE5
+        //     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        // }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("txtHint").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","ajax9.php?q=" +str, true);
+        xmlhttp.send();
+    }
+}
+</script>
+</head>
+<body>
+
+<form>
+  <select id="foo" onchange="showUser(this.value)"></select>
+</form>
+<br>
+<div id="txtHint"><b>Person info will be listed here...</b></div>
+
+<script type="text/javascript">
+  (function() { // don't leak
+      var elm = document.getElementById('foo'), // get the select
+          df = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
+      for (var i = 1; i <= 27; i++) { // loop, i like 42.
+          var option = document.createElement('option'); // create the option element
+          option.value = i; // set the value property
+          option.appendChild(document.createTextNode("Alumno id=" + i)); // set the textContent in a safe way.
+          df.appendChild(option); // append the option to the document fragment
+      }
+      elm.appendChild(df); // append the document fragment to the DOM. this is the better way rather than setting innerHTML a bunch of times (or even once with a long string)
+  }());
+</script>
+
+</body>
+</html> 

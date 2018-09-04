@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+
+<h2>The XMLHttpRequest Object</h2>
+
+<p>Con getAllResponseHeaders() retornamos todo el header de la información:</p>
+
+<p id="demo"></p>
+
+<script>
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    document.getElementById("demo").innerHTML =
+    this.getAllResponseHeaders() + "<br><br>" + this.responseText + "<br><br>" + this.getResponseHeader("Last-Modified");;
+  }
+};
+xhttp.open("GET", "ajax1.txt", true);
+xhttp.send();
+</script>
+
+</body>
+</html>
