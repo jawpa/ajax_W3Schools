@@ -21,7 +21,7 @@ function loadDoc() {
       document.getElementById("demo").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "ajax1.txt?t=" + Math.random(), true);
+  xhttp.open("GET", "ajax.php?t=" + Math.random(), true);
   xhttp.send();
 }
 </script>
